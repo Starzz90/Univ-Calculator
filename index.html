@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src= "Java.js"></script>
+    <script src="Java.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -93,45 +93,44 @@
             font-size: 1em;
         }
     </style>
-    
 </head>
 <body>
     <h1>🎓 University Admission Profile Score Calculator</h1>
 
-<form id="calculatorForm">
-    <fieldset>
-        <legend>🏅 Olympiad Achievements (0–10 Awards)</legend>
-        <label>International: <input type="number" id="international" min="0" max="10" required></label><br>
-        <label>National: <input type="number" id="national" min="0" max="10" required></label><br>
-        <label>Regional: <input type="number" id="regional" min="0" max="10" required></label>
-    </fieldset>
+    <form id="calculatorForm">
+        <fieldset>
+            <legend>🏅 Olympiad Achievements (0–10 Awards)</legend>
+            <label>International: <input type="number" id="international" min="0" max="10" required></label><br>
+            <label>National: <input type="number" id="national" min="0" max="10" required></label><br>
+            <label>Regional: <input type="number" id="regional" min="0" max="10" required></label>
+        </fieldset>
 
-    <fieldset>
-        <legend>📚 Academic & Project Scores (0–100)</legend>
-        <label>Academic Score: <input type="number" id="academics" min="0" max="100" required></label><br>
-        <label>Project Score: <input type="number" id="projects" min="0" max="100" required></label>
-    </fieldset>
+        <fieldset>
+            <legend>📚 Academic & Project Scores (0–100)</legend>
+            <label>Academic Score: <input type="number" id="academics" min="0" max="100" required></label><br>
+            <label>Project Score: <input type="number" id="projects" min="0" max="100" required></label>
+        </fieldset>
 
-    <fieldset>
-        <legend>⚖️ Weights (Total = 100%)</legend>
-        <label>Olympiad Weight: <input type="number" id="weightOlympiads" min="0" max="100" required></label><br>
-        <label>Academics Weight: <input type="number" id="weightAcademics" min="0" max="100" required></label><br>
-        <label>Projects Weight: <input type="number" id="weightProjects" min="0" max="100" required></label>
-    </fieldset>
+        <fieldset>
+            <legend>⚖️ Weights (Total = 100%)</legend>
+            <label>Olympiad Weight: <input type="number" id="weightOlympiads" min="0" max="100" required></label><br>
+            <label>Academics Weight: <input type="number" id="weightAcademics" min="0" max="100" required></label><br>
+            <label>Projects Weight: <input type="number" id="weightProjects" min="0" max="100" required></label>
+        </fieldset>
 
-    <fieldset>
-        <legend>🏛️ University Info</legend>
-        <label>University Name: <input type="text" id="universityName" required></label><br>
-        <label>Acceptance Rate (%): <input type="number" id="acceptanceRate" min="0" max="100" required></label>
-    </fieldset>
+        <fieldset>
+            <legend>🏛️ University Info</legend>
+            <label>University Name: <input type="text" id="universityName" required></label><br>
+            <label>Acceptance Rate (%): <input type="number" id="acceptanceRate" min="0" max="100" required></label>
+        </fieldset>
 
-    <br>
-    <button type="button" onclick="calculateProfileScore()">Calculate Score</button>
-</form>
+        <br>
+        <button type="button" onclick="calculateProfileScore()">Calculate Score</button>
+    </form>
 
-<hr>
+    <hr>
 
-<div id="results"></div>
+    <div id="results"></div>
 
 </body>
 </html>
