@@ -1,51 +1,64 @@
-function calculateProfileScore() {
-    let internationalAwards = parseInt(prompt("Number of International Olympiad awards (out of 10):"), 10);
-    let nationalAwards = parseInt(prompt("Number of National Olympiad awards (out of 10):"), 10);
-    let regionalAwards = parseInt(prompt("Number of Regional Olympiad awards (out of 10):"), 10);
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("scoreForm");
+    const resultArea = document.getElementById("resultArea");
 
-    let internationalScore = internationalAwards * 10;
-    let nationalScore = nationalAwards * 10;
-    let regionalScore = regionalAwards * 10;
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    let olympiadScore = ((internationalScore + nationalScore + regionalScore) / 3).toFixed(2);
+        // Get input values
+        const internationalAwards = parseInt(document.getElementById("internationalAwards").value);
+        const nationalAwards = parseInt(document.getElementById("nationalAwards").value);
+        const regionalAwards = parseInt(document.getElementById("regionalAwards").value);
 
-    let academicsScore = parseFloat(prompt("Academics score (e.g., GPA, SAT scores, etc.) (0 to 100):"));
-    let projectsScore = parseFloat(prompt("Projects score (Real-world coding, research, etc.) (0 to 100):"));
+        const academicsScore = parseFloat(document.getElementById("academicsScore").value);
+        const projectsScore = parseFloat(document.getElementById("projectsScore").value);
 
-    let weightOlympiads = parseFloat(prompt("Weight for Olympiad achievements (0 to 100):"));
-    let weightAcademics = parseFloat(prompt("Weight for Academics (0 to 100):"));
-    let weightProjects = parseFloat(prompt("Weight for Projects (0 to 100):"));
+        const weightOlympiads = parseFloat(document.getElementById("weightOlympiads").value);
+        const weightAcademics = parseFloat(document.getElementById("weightAcademics").value);
+        const weightProjects = parseFloat(document.getElementById("weightProjects").value);
 
-    if (weightOlympiads + weightAcademics + weightProjects !== 100) {
-        console.log("⚠️ Error: The weights do not sum to 100. Please check your inputs.");
-        return;
-    }
+        const universityName = document.getElementById("universityName").value;
+        const acceptanceRate = parseFloat(document.getElementById("acceptanceRate").value);
 
-    let totalScore = (
-        olympiadScore * (weightOlympiads / 100) +
-        academicsScore * (weightAcademics / 100) +
-        projectsScore * (weightProjects / 100)
-    ).toFixed(2);
+        // Validate weight
+        if (weightOlympiads + weightAcademics + weightProjects !== 100) {
+            resultArea.innerHTML = `<p style="color:red;">⚠️ The weights must sum to 100%. Please correct them.</p>`;
+            return;
+        }
 
-    console.log(`📊 Results:
-Olympiad Score: ${olympiadScore}
-Academics Score: ${academicsScore}
-Projects Score: ${projectsScore}
-Total Weighted Score: ${totalScore}%
-Normalized Total Score (Percentage): ${totalScore}%`);
+        // Calculate scores
+        const internationalScore = internationalAwards * 10;
+        const nationalScore = nationalAwards * 10;
+        const regionalScore = regionalAwards * 10;
 
-    let universityName = prompt("Enter the name of your university (e.g., NUS, Stanford, etc.):");
-    let acceptanceRate = parseFloat(prompt(`Enter the acceptance rate for ${universityName} (0 to 100):`));
-    let actualRate = 100 - acceptanceRate;
+        const olympiadScore = ((internationalScore + nationalScore + regionalScore) / 3).toFixed(2);
 
-    if (totalScore >= actualRate) {
-        console.log(`✅ Congratulations! Based on your profile score of ${totalScore}%, you are likely to be accepted into ${universityName}.`);
-    } else if (totalScore >= (actualRate - 30)) {
-        console.log(`🤔 You are on the borderline! With a profile score of ${totalScore}%, you may have a chance of being accepted into ${universityName}.`);
-    } else {
-        console.log(`❌ Based on your profile score of ${totalScore}%, you may need to improve your profile to increase your chances of acceptance into ${universityName}.`);
-    }
-}
+        const totalScore = (
+            olympiadScore * (weightOlympiads / 100) +
+            academicsScore * (weightAcademics / 100) +
+            projectsScore * (weightProjects / 100)
+        ).toFixed(2);
 
-// Run the calculator
-calculateProfileScore();
+        // Evaluate result
+        const actualRate = 100 - acceptanceRate;
+        let message = "";
+
+        if (totalScore >= actualRate) {
+            message = `✅ Congratulations! You are likely to be accepted into <strong>${universityName}</strong>.`;
+        } else if (totalScore >= actualRate - 30) {
+            message = `🤔 You are on the borderline for acceptance into <strong>${universityName}</strong>.`;
+        } else {
+            message = `❌ You may need to improve your profile for a better chance at <strong>${universityName}</strong>.`;
+        }
+
+        // Output results
+        resultArea.innerHTML = `
+            <h3>📊 Results:</h3>
+            <p>Olympiad Score: ${olympiadScore}</p>
+            <p>Academics Score: ${academicsScore}</p>
+            <p>Projects Score: ${projectsScore}</p>
+            <p><strong>Total Weighted Score:</strong> ${totalScore}%</p>
+            <p>${message}</p>
+        `;
+    });
+});
