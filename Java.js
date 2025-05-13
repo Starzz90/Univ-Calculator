@@ -1,7 +1,5 @@
 function calculateProfileScore() {
-    alert("🎓 University Admission Profile Score Calculator (0-100 scale)");
 
-    // 1. Olympiad Achievements
     let internationalAwards = parseInt(prompt("Number of International Olympiad awards (out of 10):"), 10);
     let nationalAwards = parseInt(prompt("Number of National Olympiad awards (out of 10):"), 10);
     let regionalAwards = parseInt(prompt("Number of Regional Olympiad awards (out of 10):"), 10);
@@ -34,7 +32,7 @@ function calculateProfileScore() {
         projectsScore * (weightProjects / 100)
     ).toFixed(2);
 
-    alert(`📊 Results:
+    (`📊 Results:
 Olympiad Score: ${olympiadScore}
 Academics Score: ${academicsScore}
 Projects Score: ${projectsScore}
@@ -47,7 +45,7 @@ Normalized Total Score (Percentage): ${totalScore}%`);
     let actualRate = 100 - acceptanceRate;
 
     if (totalScore >= actualRate) {
-        alert(`✅ Congratulations! Based on your profile score of ${totalScore}%, you are likely to be accepted into ${universityName}.`);
+        (`✅ Congratulations! Based on your profile score of ${totalScore}%, you are likely to be accepted into ${universityName}.`);
     } else if (totalScore >= (actualRate - 30)) {
         alert(`🤔 You are on the borderline! With a profile score of ${totalScore}%, you may have a chance of being accepted into ${universityName}.`);
     } else {
